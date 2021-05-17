@@ -4,7 +4,13 @@ const mongoose = require('mongoose')
 
 const schema = require('./schema/schema')
 
+const cors = require('cors')
+
 const app = express()
+
+// Allow cross origin requests
+
+app.use(cors())
 
 
 // MongoDB connection, don't forget to create a mongodb cluster first and get the credentials at https://cloud.mongodb.com/
@@ -21,6 +27,6 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true  
 }))
 
-app.listen(4000, () => {
-  console.log("Listening on port 3000")
-})
+const server = app.listen(4000, () => {
+  console.log(`Listening on port ${server.address().port}`)
+}) 
